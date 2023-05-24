@@ -21,16 +21,7 @@
             查询
           </el-button>
         </el-form-item>
-        <el-form-item>
-          <el-button icon="el-icon-search" type="danger" @click="handleImport">
-            导入
-          </el-button>
-        </el-form-item>
-        <!-- <el-form-item>
-          <el-button icon="el-icon-add" type="success" native-type="submit" @click="handleAdd">
-            新增配置策略
-          </el-button>
-        </el-form-item> -->
+   
 
       </el-form>
 

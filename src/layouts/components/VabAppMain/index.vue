@@ -9,7 +9,7 @@
     <footer v-show="footerCopyright" class="footer-copyright">
       Copyright
       <vab-icon :icon="['fas', 'copyright']"></vab-icon>
-      营销管理系统 {{ fullYear }}
+      数据中心 {{ fullYear }}
     </footer>
   </div>
 </template>
