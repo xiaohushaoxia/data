@@ -3,16 +3,13 @@
     <vab-query-form>
       <el-form ref="form" :model="queryForm" :inline="true" @submit.native.prevent>
 
-
-        <!-- <el-form-item>
-          <el-input v-model="queryForm.group_name" placeholder="分组名称"></el-input>
-        </el-form-item>
         <el-form-item>
-          <el-select v-model="queryForm.group_type" placeholder="分组类型">
-            <el-option v-for="(item, index) in group_type" :key="index" :label="item.label"
-              :value="item.value"></el-option>
+          <el-select v-model="queryForm.type" placeholder=" ">
+            <el-option v-for="(item, index) in type" :key="index" :label="item.label" :value="item.value"></el-option>
           </el-select>
+
         </el-form-item>
+
         <el-form-item>
           <el-button icon="el-icon-search" type="primary" native-type="submit" @click="resetForm">
             重置
@@ -23,12 +20,8 @@
           <el-button icon="el-icon-search" type="primary" native-type="submit" @click="handleQuery">
             查询
           </el-button>
-        </el-form-item> -->
-        <!-- <el-form-item>
-          <el-button icon="el-icon-add" type="success" native-type="submit" @click="handleAdd">
-            创建分组
-          </el-button>
-        </el-form-item> -->
+        </el-form-item>
+   
 
       </el-form>
 
@@ -36,34 +29,27 @@
 
     <el-table ref="tableSort" v-loading="listLoading" :data="list" :element-loading-text="elementLoadingText"
       :height="height" @selection-change="setSelectRows" @sort-change="tableSortChange" width="100%">
-      <el-table-column align="left" show-overflow-tooltip prop="id" label="序号" ></el-table-column>
+      <el-table-column align="left" show-overflow-tooltip width="100" prop="id" label="序号"></el-table-column>
+      
+      <el-table-column align="left" show-overflow-tooltip prop="field" label="邮箱" />
+   
 
-      <!-- <el-table-column align="left" show-overflow-tooltip prop="session_phone" label="分组类型">
+      <el-table-column align="left" show-overflow-tooltip prop="desc" label="密码" />
+
+     <el-table-column align="left" show-overflow-tooltip prop="status" label="状态">
         <template slot-scope="scope">
-          <el-tag v-if="scope.row.group_type == 1">TG协议号</el-tag>
-          <el-tag v-if="scope.row.group_type == 2">TG私发用户</el-tag>
-          <el-tag v-if="scope.row.group_type == 3">群发消息</el-tag>
-          <el-tag v-if="scope.row.group_type == 4">INS-博主-采集</el-tag>
-          <el-tag v-if="scope.row.group_type == 5">INS-粉丝</el-tag>
-          <el-tag v-if="scope.row.group_type == 6">INS-协议号-采集</el-tag>
-          <el-tag v-if="scope.row.group_type == 8">INS-协议号-私发</el-tag>
-          <el-tag v-if="scope.row.group_type == 7">INS-协议号-拉群</el-tag>
-          <el-tag v-if="scope.row.group_type == 9">INS-协议号-评论</el-tag>
-          <el-tag v-if="scope.row.group_type == 10">INS-协议号-点赞</el-tag>
-          <el-tag v-if="scope.row.group_type == 11">INS-协议号-关注</el-tag>
-          <el-tag v-if="scope.row.group_type == 12">INS-博主-关注</el-tag>
-            <el-tag v-if="scope.row.group_type == 13">INS-协议号-分裂</el-tag>
+          <el-tag v-if="scope.row.group_status == 1" type="success">正常</el-tag>
+          <el-tag v-if="scope.row.group_status == 2" type="error">异常</el-tag>
 
         </template>
-      </el-table-column> -->
-      <el-table-column align="left" show-overflow-tooltip prop="group_name" label="分组名称" />
-      <!-- <el-table-column align="left" show-overflow-tooltip prop="total" label="统计" /> -->
 
-      <!-- <el-table-column align="left" show-overflow-tooltip prop="created_at" label="创建时间" />
-      <el-table-column align="left" show-overflow-tooltip prop="updated_at" label="更新时间" /> -->
+      </el-table-column>
+  
+      <el-table-column align="left" show-overflow-tooltip prop="created_at" label="创建时间" />
+      <el-table-column align="left" show-overflow-tooltip prop="updated_at" label="更新时间" />
 
-      <el-table-column show-overflow-tooltip label="操作" >
-        <template #default="{ row }" >
+      <el-table-column show-overflow-tooltip label="操作">
+        <template #default="{ row }">
           <el-button type="danger" size="mini" @click="handleDelete(row)">删除</el-button>
           <el-button type="primary" size="mini" @click="handleEdit(row)">编辑</el-button>
         </template>
@@ -73,14 +59,14 @@
       :page-size="queryForm.pageSize" :total="total" @current-change="handleCurrentChange"
       @size-change="handleSizeChange"></el-pagination>
     <Edit ref="edit" />
+    <SessionUpload ref="sessionUpload" />
   </div>
 </template>
 
 <script>
-import { Delete, List } from '@/api/group'
-import { Total as AccountTotal } from '@/api/instagram/account'
-import { Total as BloggerTotal } from '@/api/instagram/blogger'
-import { Total as UserTotal } from '@/api/instagram/users'
+// import {Delete, List} from '@/api/group'
+import { Delete, List } from '@/api/data'
+
 // import edit.vue
 import Edit from './components/edit.vue'
 import SessionUpload from './components/import.vue'
@@ -114,27 +100,6 @@ export default {
       background: true,
       selectRows: '',
       elementLoadingText: '正在加载...',
-
-      group_status: [
-        { label: '正常', value: 1 },
-        { label: '异常', value: 2 },
-      ],
-      group_type: [
-      
-        { label: 'INS-协议号-采集', value: 6 },
-        { label: 'INS-协议号-拉群', value: 7 },
-        { label: 'INS-协议号-私发', value: 8 },
-        { label: 'INS-协议号-关注', value: 11 },
-        { label: 'INS-协议号-点赞', value: 10 },
-        { label: 'INS-协议号-评论', value: 9 },
-        { label: 'INS-博主-采集', value: 4 },
-        { label: 'INS-博主-关注', value: 12 },
-        { label: 'INS-粉丝', value: 5 },
-        { label: 'TG-协议号', value: 1 },
-        { label: 'TG-私发名单', value: 2 },
-        { label: 'TG-群发消息', value: 3 },
-          { label: 'INS-协议号-分裂', value: 13 },
-      ],
       queryForm: {
         pageNo: 1,
         pageSize: 10,
@@ -142,12 +107,14 @@ export default {
         session_phone: '',
         status: '',
         group_name: '',
-        group_type: '',
-        // group_status: [
-        //   { label: '全部', value: -1 },
-        //   { label: '激活', value: 1 },
-        //   { label: '禁用', value: 2 },
-        // ],
+        group_status: [
+          // { label: '全部', value: -1 },
+          { label: 'IG发送策略', value: 1 },
+          { label: 'IG拉群策略', value: 2 },
+          // { label: '消息分组', value: 3 },
+          // { label: '定时发群组', value: 3 },
+        ],
+
         create_time: '',
         last_run_time: '',
       },
@@ -191,6 +158,7 @@ export default {
       this.$refs['edit'].showEdit()
     },
     handleEdit(row) {
+      console.log(row)
       this.$refs['edit'].showEdit(row)
     },
     handleDelete(row) {
@@ -220,21 +188,38 @@ export default {
     },
     handleQuery() {
       this.queryForm.pageNo = 1
-      console.log(this.queryForm.query)
+      // console.log(this.queryForm.query)
       this.fetchData()
     },
     async fetchData() {
       this.listLoading = true
-      List(this.queryForm).then(res => {
-        this.total = res.count
-        this.list = res.data
+      const { data, count } = await List(this.queryForm)
+      this.total = count
+
+      this.list = data
+      // for (let i = 0; i < this.list.length; i++) {
+      //     if( this.list[i].type==1 && this.list[i].type==2){
+      //       this.list[i].value = JSON.parse(this.list[i].value)
+      //     //组装数据
+      //     this.list[i].add_members_every_time = this.list[i].value.add_members_every_time       //每次拉多少人
+      //     this.list[i].add_members_sleep = this.list[i].value.add_members_sleep       //每次拉人的间隔
+      //     this.list[i].create_members_total = this.list[i].value.create_members_total       //群总人数
+      //     this.list[i].one_account_create_total = this.list[i].value.one_account_create_total       //一个协议号建群数
+      //     this.list[i].create_group_sleep = this.list[i].value.create_group_sleep     //拉群间隔
+      //     if(  this.list[i].one_account_create_total===99999999){
+      //       this.list[i].sele=1
+      //     }else{
+      //       this.list[i].sele=2
+      //     }
+      //     this.list[i].error_sleep = this.list[i].value.error_sleep  //异常休眠间隔
+      //     this.list[i].send_sleep = this.list[i].value.send_sleep     //每次发送的间隔
+      //     this.list[i].one_account_send_total = this.list[i].value.one_account_send_total   //一个协议号发几个
+      //     }
+      //   }
+        // console.log(this.list.value)
+      setTimeout(() => {
         this.listLoading = false
-      })
-      //range data and then if group_tpye is 1 then request api to get it data of by groupId
-
-
-
-
+      }, 500)
     },
     handleImport() {
       this.$refs['sessionUpload'].showUpload()

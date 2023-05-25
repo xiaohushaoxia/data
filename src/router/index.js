@@ -50,14 +50,14 @@ export const asyncRoutes = [
         ],
     },
     {
-        path: '/qdata',
+        path: '/domain',
         component: Layout,
-        redirect: '/qdata',
+        redirect: '/domain',
         children: [
             {
-                path: 'qdata',
-                name: 'qdata',
-                component: () => import('@/views/task/index.vue'),
+                path: 'domain',
+                name: 'domain',
+                component: () => import('@/views/domain/index.vue'),
                 meta: {
                     title: '目标域名',
                     affix: false,
@@ -69,14 +69,14 @@ export const asyncRoutes = [
     },
 
     {
-        path: '/bdata2',
+        path: '/qdata',
         component: Layout,
-        redirect: '/bdata2',
+        redirect: '/qdata',
         children: [
             {
-                path: 'bdata2',
-                name: 'bdata2',
-                component: () => import('@/views/mailbox/index.vue'),
+                path: 'qdata',
+                name: 'qdata',
+                component: () => import('@/views/qdata/index.vue'),
                 meta: {
                     title: 'Q数据',
                     affix: false,
@@ -86,6 +86,44 @@ export const asyncRoutes = [
             }
         ],
     },
+    
+    // {
+    //     path: '/bdata2',
+    //     component: Layout,
+    //     redirect: '/bdata2',
+    //     children: [
+    //         {
+    //             path: 'bdata2',
+    //             name: 'bdata2',
+    //             component: () => import('@/views/bdata/index.vue'),
+    //             meta: {
+    //                 title: 'B数据',
+    //                 affix: false,
+    //                 // icon: 'home',
+    //                 permissions: ['1']
+    //             },
+    //         }
+    //     ],
+    // },
+    
+    // {
+    //     path: '/sdata2',
+    //     component: Layout,
+    //     redirect: '/sdata2',
+    //     children: [
+    //         {
+    //             path: 'sdata2',
+    //             name: 'sdata2',
+    //             component: () => import('@/views/sdata/index.vue'),
+    //             meta: {
+    //                 title: 'B数据',
+    //                 affix: false,
+    //                 // icon: 'home',
+    //                 permissions: ['1']
+    //             },
+    //         }
+    //     ],
+    // },
  //分组管理
     // {
     //     path: '/group',
