@@ -156,14 +156,22 @@ export default {
     },
     //Download
     downloadImpor(){
+      if(this.queryForm.group_id==''){
+          this.$message({
+            message: '请选择分组',
+            type: 'warning'
+          })
+          return false
+        }
         // //获取当前时间并设置格式  
-        // if(this.timedata.length==0){
-        //   this.$message({
-        //     message: '请选择时间',
-        //     type: 'warning'
-        //   })
-        //   return false
-        // }
+        if(this.timedata.length==0){
+          this.$message({
+            message: '请选择时间',
+            type: 'warning'
+          })
+          return false
+        }
+       
       //把group_id start_time  end_time处理为json格式
         console.log(this.queryForm)
         delete this.queryForm.pageNo
