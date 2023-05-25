@@ -261,8 +261,9 @@ export default {
     async fetchData() {
       this.listLoading = true
 
-      const { data, count } = await List(this.queryForm)
-      this.total = count
+      const { data, total } = await List(this.queryForm)
+      this.total = total
+
 
       this.list = data
 

@@ -156,13 +156,13 @@ export default {
     },
     //Download
     downloadImpor(){
-      if(this.queryForm.group_id==''){
-          this.$message({
-            message: '请选择分组',
-            type: 'warning'
-          })
-          return false
-        }
+      // if(this.queryForm.group_id==''){
+      //     this.$message({
+      //       message: '请选择分组',
+      //       type: 'warning'
+      //     })
+      //     return false
+      //   }
         // //获取当前时间并设置格式  
         if(this.timedata.length==0){
           this.$message({
@@ -263,16 +263,16 @@ export default {
     },
     handleQuery() {
       this.queryForm.pageNo = 1
-      console.log(this.timedata)
-      console.log(13213213123)
-      console.log(this.queryForm)
-      // this.fetchData()
+      // console.log(this.timedata)
+      // console.log(13213213123)
+      // console.log(this.queryForm)
+      this.fetchData()
     },
     async fetchData() {
       this.listLoading = true
       this.queryForm.type =1
-      const { data, count } = await List(this.queryForm)
-      this.total = count
+      const { data, total } = await List(this.queryForm)
+      this.total = total
 
       this.list = data
 
