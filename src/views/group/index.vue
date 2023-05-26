@@ -57,7 +57,7 @@
         </template>
       </el-table-column> -->
       <el-table-column align="left" show-overflow-tooltip prop="group_name" label="分组名称" />
-      <!-- <el-table-column align="left" show-overflow-tooltip prop="total" label="统计" /> -->
+      <el-table-column align="left" show-overflow-tooltip prop="total" label="统计" />
 
       <!-- <el-table-column align="left" show-overflow-tooltip prop="created_at" label="创建时间" />
       <el-table-column align="left" show-overflow-tooltip prop="updated_at" label="更新时间" /> -->
@@ -120,20 +120,8 @@ export default {
         { label: '异常', value: 2 },
       ],
       group_type: [
-      
-        { label: 'INS-协议号-采集', value: 6 },
-        { label: 'INS-协议号-拉群', value: 7 },
-        { label: 'INS-协议号-私发', value: 8 },
-        { label: 'INS-协议号-关注', value: 11 },
-        { label: 'INS-协议号-点赞', value: 10 },
-        { label: 'INS-协议号-评论', value: 9 },
-        { label: 'INS-博主-采集', value: 4 },
-        { label: 'INS-博主-关注', value: 12 },
-        { label: 'INS-粉丝', value: 5 },
-        { label: 'TG-协议号', value: 1 },
-        { label: 'TG-私发名单', value: 2 },
-        { label: 'TG-群发消息', value: 3 },
-          { label: 'INS-协议号-分裂', value: 13 },
+        { label: '目标域名', value: 1 },
+        { label: 'q数据', value: 2 },
       ],
       queryForm: {
         pageNo: 1,

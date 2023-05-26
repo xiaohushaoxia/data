@@ -213,9 +213,8 @@ export default {
     },
     resetForm() {
       this.queryForm = {
-        pageNo: 1,
-        pageSize: 15,
-        // type: 1,//数据q 默认type=1
+      from: "select",
+        group_type:1,//    { label: '目标域名', value: 1 }, { label: 'q数据', value: 2 },
       }
       this.timedata= '',
       this.fetchData()
