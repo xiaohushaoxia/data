@@ -5,12 +5,12 @@
       <el-form-item label="分组名称" prop="type">
         <el-input v-model="form.group_name"></el-input>
       </el-form-item>
-      <el-form-item label="分组类型" prop="type">
+      <!-- <el-form-item label="分组类型" prop="type">
         <el-select v-model="form.group_type">
           <el-option v-for="item in group_type" :key="item.value" :label="item.label" :value="item.value">
           </el-option>
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
 
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -28,30 +28,30 @@ export default {
   data() {
     return {
 
-      group_type: [
-      { label: '话术分组', value: 3 },
-      { label: 'INS-协议号-采集', value: 6 },
-        { label: 'INS-协议号-拉群', value: 7 },
-        { label: 'INS-协议号-私发', value: 8 },
-        { label: 'INS-协议号-关注', value: 11 },
-        { label: 'INS-协议号-点赞', value: 10 },
-        { label: 'INS-协议号-评论', value: 9 },
-          { label: 'INS-协议号-分裂', value: 13 },
-        { label: 'INS-博主-采集', value: 4 },
-        { label: 'INS-博主-关注', value: 12 },
-        { label: 'INS-粉丝', value: 5 },
-        { label: 'TG-协议号', value: 1 },
-        { label: 'TG-私发名单', value: 2 },
+      // group_type: [
+      // { label: '话术分组', value: 3 },
+      // { label: 'INS-协议号-采集', value: 6 },
+      //   { label: 'INS-协议号-拉群', value: 7 },
+      //   { label: 'INS-协议号-私发', value: 8 },
+      //   { label: 'INS-协议号-关注', value: 11 },
+      //   { label: 'INS-协议号-点赞', value: 10 },
+      //   { label: 'INS-协议号-评论', value: 9 },
+      //     { label: 'INS-协议号-分裂', value: 13 },
+      //   { label: 'INS-博主-采集', value: 4 },
+      //   { label: 'INS-博主-关注', value: 12 },
+      //   { label: 'INS-粉丝', value: 5 },
+      //   { label: 'TG-协议号', value: 1 },
+      //   { label: 'TG-私发名单', value: 2 },
       
 
-      ],
-      group_status: [
-        { label: '激活', value: 1 },
-        { label: '禁用', value: 2 },
-      ],
+      // ],
+      // group_status: [
+      //   { label: '激活', value: 1 },
+      //   { label: '禁用', value: 2 },
+      // ],
       form: {
-        account_type: "",
-        status: "",
+        // account_type: "",
+        // status: "",
       },
 
       title: '',
