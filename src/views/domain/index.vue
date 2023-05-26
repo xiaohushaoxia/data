@@ -52,7 +52,7 @@
    
 
       <el-table-column align="left" show-overflow-tooltip prop="group_name" label="分组名称" />
-      <el-table-column align="left" show-overflow-tooltip prop="target_domain" label="目标域名" />
+      <el-table-column align="left" show-overflow-tooltip prop="domain" label="目标域名" />
       <!-- <el-table-column align="left" show-overflow-tooltip prop="brand_domain" label="主域名" />
       <el-table-column align="left" show-overflow-tooltip prop="brand_name" label="品牌名称" />
       <el-table-column align="left" show-overflow-tooltip prop="domain" label="结果域名" />
