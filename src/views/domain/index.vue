@@ -273,6 +273,7 @@ export default {
     },
     handleImport() {
       this.$refs['sessionUpload'].showUpload()
+    
     },
 
 

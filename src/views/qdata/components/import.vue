@@ -88,6 +88,7 @@ export default {
         this.$message.success('导入成功')
         // console.log(res)
            this.dialogFormVisible = false
+           this.$parent.fetchData()
       }).catch(err => {
         this.progressFlag = false
         // this.$message.error('上传失败')
@@ -102,13 +103,13 @@ export default {
       this.form.file=fileObj.file
       let f = new FormData()
       f.append("file", fileObj.file)
-      Import(f).then(res => {
-        // this.$message.success('导入成功')
-        // console.log(res)
-      }).catch(err => {
-        this.progressFlag = false
-        // this.$message.error('上传失败')
-      })
+      // Import(f).then(res => {
+      //   // this.$message.success('导入成功')
+      //   // console.log(res)
+      // }).catch(err => {
+      //   this.progressFlag = false
+      //   // this.$message.error('上传失败')
+      // })
       return true
     },
 

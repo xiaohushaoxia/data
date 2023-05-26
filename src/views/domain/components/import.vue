@@ -87,6 +87,8 @@ export default {
       Import(this.form).then(res => {
         this.$message.success('导入成功')
         // console.log(res)
+        //调用父组件的方法
+        this.$parent.fetchData()
            this.dialogFormVisible = false
       }).catch(err => {
         this.progressFlag = false
@@ -102,13 +104,13 @@ export default {
       this.form.file=fileObj.file
       let f = new FormData()
       f.append("file", fileObj.file)
-      Import(f).then(res => {
-        // this.$message.success('导入成功')
-        // console.log(res)
-      }).catch(err => {
-        this.progressFlag = false
-        // this.$message.error('上传失败')
-      })
+      // Import(f).then(res => {
+      //   // this.$message.success('导入成功')
+      //   // console.log(res)
+      // }).catch(err => {
+      //   this.progressFlag = false
+      //   // this.$message.error('上传失败')
+      // })
       return true
     },
 
