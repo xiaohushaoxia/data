@@ -7,8 +7,8 @@
           <el-option v-for="(item, index) in groupList" :key="index" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="目标域名" prop="target_domain">
-        <el-input v-model="form.target_domain"></el-input>
+      <el-form-item label="目标域名" prop="domain">
+        <el-input v-model="form.domain"></el-input>
       </el-form-item>
 <!--    
       <el-form-item label="主域名" prop="brand_domain">
