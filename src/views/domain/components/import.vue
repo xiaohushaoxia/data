@@ -74,6 +74,8 @@ export default {
     }
   },
   created() {
+    this.form.group_name='',
+        this.form.file=''
   },
   methods: {
     async showUpload() {
@@ -88,6 +90,9 @@ export default {
         this.$message.success('导入成功')
         // console.log(res)
         //调用父组件的方法
+        this.form.group_name='',
+        this.form.file='',
+        this.fileList=[],
         this.$parent.fetchData()
            this.dialogFormVisible = false
       }).catch(err => {

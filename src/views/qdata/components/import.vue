@@ -74,6 +74,8 @@ export default {
     }
   },
   created() {
+    // this.form.group_name='',
+    //     this.form.file=''
   },
   methods: {
     async showUpload() {
@@ -87,6 +89,9 @@ export default {
       Import(this.form).then(res => {
         this.$message.success('导入成功')
         // console.log(res)
+        this.form.group_name='',
+        this.form.file='',
+        this.fileList=[],
            this.dialogFormVisible = false
            this.$parent.fetchData()
       }).catch(err => {
