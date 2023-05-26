@@ -3,12 +3,12 @@
     <vab-query-form>
       <el-form ref="form" :model="queryForm" :inline="true" @submit.native.prevent>
 
-        <!-- <el-form-item>
+        <el-form-item>
           <el-select v-model="queryForm.group_id" placeholder="分组名称">
             <el-option v-for="(item, index) in grouplists" :key="index" :label="item.label" :value="item.value"></el-option>
           </el-select>
 
-        </el-form-item> -->
+        </el-form-item>
 
         <el-date-picker
       v-model="timedata"
@@ -51,7 +51,7 @@
       <el-table-column align="left" show-overflow-tooltip prop="updated_at" label="上传时间" />
    
 
-      <!-- <el-table-column align="left" show-overflow-tooltip prop="group_name" label="分组名称" /> -->
+      <el-table-column align="left" show-overflow-tooltip prop="group_name" label="分组名称" />
       <el-table-column align="left" show-overflow-tooltip prop="target_domain" label="目标域名" />
       <!-- <el-table-column align="left" show-overflow-tooltip prop="brand_domain" label="主域名" />
       <el-table-column align="left" show-overflow-tooltip prop="brand_name" label="品牌名称" />
