@@ -12,7 +12,7 @@
 
         <el-date-picker
       v-model="timedata"
-      type="daterange"
+      type="datetimerange"
       start-placeholder="开始日期"
       end-placeholder="结束日期"
       value-format="yyyy-MM-dd HH:mm:ss"
@@ -157,9 +157,9 @@ export default {
     //Download
     downloadImpor(){
         //获取当前时间并设置格式  
-        if(this.timedata.length==0){
+        if(this.timedata.length==0 && this.queryForm.group_id==''){
           this.$message({
-            message: '请选择时间',
+            message: '请选择时间或者分组',
             type: 'warning'
           })
           return false
