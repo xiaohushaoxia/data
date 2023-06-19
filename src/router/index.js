@@ -31,123 +31,300 @@ export const constantRoutes = [
 ]
 
 export const asyncRoutes = [
-    {
-        path: '/',
-        component: Layout,
-        redirect: '/index',
-        children: [
-            {
-                path: 'index',
-                name: 'Index',
-                component: () => import('@/views/group/index.vue'),
-                meta: {
-                    title: '分组管理',
-                    affix: false,
-                    // icon: 'home',
-                    permissions: ['1']
-                },
-            }
-        ],
-    },
-    {
-        path: '/domain',
-        component: Layout,
-        redirect: '/domain',
-        children: [
-            {
-                path: 'domain',
-                name: 'domain',
-                component: () => import('@/views/domain/index.vue'),
-                meta: {
-                    title: '目标域名',
-                    affix: false,
-                    // icon: 'home',
-                    permissions: ['1']
-                },
-            }
-        ],
-    },
-
+    // {
+    //     path: '/',
+    //     component: Layout,
+    //     redirect: '/index',
+    //     children: [
+    //         {
+    //             path: 'index',
+    //             name: 'Index',
+    //             component: () => import('@/views/group/index.vue'),
+    //             meta: {
+    //                 title: '分组管理',
+    //                 affix: false,
+    //                 // icon: 'home',
+    //                 permissions: ['1']
+    //             },
+    //         }
+    //     ],
+    // },
+    // {
+    //     path: '/domain',
+    //     component: Layout,
+    //     redirect: '/domain',
+    //     children: [
+    //         {
+    //             path: 'domain',
+    //             name: 'domain',
+    //             component: () => import('@/views/domain/index.vue'),
+    //             meta: {
+    //                 title: '目标域名',
+    //                 affix: false,
+    //                 // icon: 'home',
+    //                 permissions: ['1']
+    //             },
+    //         }
+    //     ],
+    // },
+    // {
+    //     path: '/message',
+    //     component: Layout,
+    //     redirect: 'noRedirect',
+    //     name: 'instagram',
+    //     meta: { title: '广告管理', permissions: ['1'] },
+    //     children: [
+    //         {
+    //             path: 'task_message',
+    //             name: 'task_message',
+    //             component: () => import('@/views/message/task_message/index.vue'),
+    //             meta: {
+    //                 title: '话术管理',
+    //                 // affix: false,
+    //                 // icon: 'home',
+    //                 // permissions: ['1', '3']
+    //             },
+    //         },
+    //         {
+    //             path: 'receive_fans',
+    //             name: 'receive_fans',
+    //             component: () => import('@/views/message/receive_fans/index.vue'),
+    //             meta: { title: '接粉号' },
+    //         },
+    //     ],
+    // },
+    //Q
     {
         path: '/qdata',
         component: Layout,
         redirect: '/qdata',
+        meta: { title: 'Q数据', permissions: ['1','2'] },
         children: [
-            {
-                path: 'qdata',
-                name: 'qdata',
-                component: () => import('@/views/qdata/index.vue'),
+           {
+                path: 'qdata/domain',
+                name: 'qdata/domain',
+                component: () => import('@/views/domain/index.vue'),
                 meta: {
-                    title: 'Q数据',
-                    affix: false,
+                    title: '目标域名',
+                    // affix: false,
                     // icon: 'home',
-                    permissions: ['1']
+                    // permissions: ['2']
                 },
+                
+            }, 
+            {
+                path: 'qdata/group',
+                name: 'qdata/group',
+                component: () => import('@/views/group/index.vue'),
+                meta: {
+                    title: '分组',
+                    // affix: false,
+                    // icon: 'home',
+                    // permissions: ['2']
+                },
+                
+            },
+            {
+                path: 'qdatas',
+                name: 'qdatas',
+                component: () => import('@/views/qdata/index.vue'),
+                query: { id: 1 },
+                meta: {
+                    title: '数据',
+                    query: { id: 1 }
+                    // affix: false,
+                    // icon: 'home',
+                    // permissions: ['1']
+                },
+                
             }
+            
         ],
     },
-    
-    // {
-    //     path: '/bdata2',
-    //     component: Layout,
-    //     redirect: '/bdata2',
-    //     children: [
-    //         {
-    //             path: 'bdata2',
-    //             name: 'bdata2',
-    //             component: () => import('@/views/bdata/index.vue'),
-    //             meta: {
-    //                 title: 'B数据',
-    //                 affix: false,
-    //                 // icon: 'home',
-    //                 permissions: ['1']
-    //             },
-    //         }
-    //     ],
-    // },
-    
-    // {
-    //     path: '/sdata2',
-    //     component: Layout,
-    //     redirect: '/sdata2',
-    //     children: [
-    //         {
-    //             path: 'sdata2',
-    //             name: 'sdata2',
-    //             component: () => import('@/views/sdata/index.vue'),
-    //             meta: {
-    //                 title: 'B数据',
-    //                 affix: false,
-    //                 // icon: 'home',
-    //                 permissions: ['1']
-    //             },
-    //         }
-    //     ],
-    // },
- //分组管理
-    // {
-    //     path: '/group',
-    //     component: Layout,
-    //     redirect: 'noRedirect',
-    //     name: 'group',
-    //     meta: { title: '分组管理', permissions: ['1'] },
-    //     children: [
-    //         {
-    //             path: 'ins_account_group',
-    //             name: 'ins_account',
-    //        
-    //             meta: { title: '协议号分组' },
-    //         },
-    //         {
-    //             path: 'ins_blogger_ggroup',
-    //             name: 'ins_blogger_ggroup',
-    //             component: () => import('@/'),
-    //             meta: { title: '博主分组' },
-    //         },
-  
-    //     ],
-    // },
-
+    //B
+    {
+        path: '/bdata',
+        component: Layout,
+        redirect: '/bdata',
+        meta: { title: 'B数据', permissions: ['1','2'] },
+        children: [
+           {
+                path: 'bdata/group',
+                name: 'bdata/group',
+                component: () => import('@/views/domain/index.vue'),
+                meta: {
+                    title: '目标域名',
+                    // affix: false,
+                    // icon: 'home',
+                    // permissions: ['2']
+                },
+                
+            }, 
+            {
+                path: 'bdata/domain',
+                name: 'bdata/domain',
+                component: () => import('@/views/group/index.vue'),
+                meta: {
+                    title: '分组',
+                    // affix: false,
+                    // icon: 'home',
+                    // permissions: ['2']
+                },
+                
+            },
+            {
+                path: 'bdata',
+                name: 'bdata',
+                component: () => import('@/views/bdata/index.vue'),
+                meta: {
+                    title: '数据',
+                    // affix: false,
+                    // icon: 'home',
+                    // permissions: ['1']
+                },
+                
+            }
+            
+        ],
+    },
+    //s
+    {
+        path: '/sdata',
+        component: Layout,
+        redirect: '/sdata',
+        meta: { title: 'S数据', permissions: ['1','2'] },
+        children: [
+           {
+                path: 'sdata/domain',
+                name: 'sdata/domain',
+                component: () => import('@/views/domain/index.vue'),
+                meta: {
+                    title: '目标域名',
+                    // affix: false,
+                    // icon: 'home',
+                    // permissions: ['2']
+                },
+                
+            }, 
+            {
+                path: 'sdata/group',
+                name: 'sdata/group',
+                component: () => import('@/views/group/index.vue'),
+                meta: {
+                    title: '分组',
+                    // affix: false,
+                    // icon: 'home',
+                    // permissions: ['2']
+                },
+                
+            },
+            {
+                path: 'sdata',
+                name: 'sdata',
+                component: () => import('@/views/sdata/index.vue'),
+                meta: {
+                    title: '数据',
+                    // affix: false,
+                    // icon: 'home',
+                    // permissions: ['1']
+                },
+                
+            }
+            
+        ],
+    },
+   //6
+   {
+    path: '/sixdata',
+    component: Layout,
+    redirect: '/sixdata',
+    meta: { title: '6数据', permissions: ['1','2'] },
+    children: [
+       {
+            path: 'sixdata/domain',
+            name: 'sixdata/domain',
+            component: () => import('@/views/domain/index.vue'),
+            meta: {
+                title: '目标域名',
+                // affix: false,
+                // icon: 'home',
+                // permissions: ['2']
+            },
+            
+        }, 
+        {
+            path: 'bdata/group',
+            name: 'bdata/group',
+            component: () => import('@/views/group/index.vue'),
+            meta: {
+                title: '分组',
+                // affix: false,
+                // icon: 'home',
+                // permissions: ['2']
+            },
+            
+        },
+        {
+            path: 'sixdata',
+            name: 'sixdata',
+            component: () => import('@/views/sixdata/index.vue'),
+            meta: {
+                title: '数据',
+                // affix: false,
+                // icon: 'home',
+                // permissions: ['1']
+            },
+            
+        }
+        
+    ],
+},  
+ //c
+ {
+    path: '/cdata',
+    component: Layout,
+    redirect: '/cdata',
+    meta: { title: 'C数据', permissions: ['1','2'] },
+    children: [
+       {
+            path: 'sdata/domain',
+            name: 'sdata/domain',
+            component: () => import('@/views/domain/index.vue'),
+            meta: {
+                title: '目标域名',
+                // affix: false,
+                // icon: 'home',
+                // permissions: ['2']
+            },
+            
+        }, 
+        {
+            path: 'bdata/group',
+            name: 'bdata/group',
+            component: () => import('@/views/group/index.vue'),
+            meta: {
+                title: '分组',
+                // affix: false,
+                // icon: 'home',
+                // permissions: ['2']
+            },
+            
+        },
+        {
+            path: 'cdata',
+            name: 'cdata',
+            component: () => import('@/views/cdata/index.vue'),
+            meta: {
+                title: '数据',
+                // affix: false,
+                // icon: 'home',
+                // permissions: ['1']
+            },
+            
+        }
+        
+    ],
+},
 
     {
         path: '*',
@@ -155,6 +332,8 @@ export const asyncRoutes = [
         hidden: true,
     },
 ]
+
+
 
 const router = new VueRouter({
     base: publicPath,
@@ -166,6 +345,28 @@ const router = new VueRouter({
 })
 
 export function resetRouter() {
+    this.$router.push({
+        name: 'qdatas',
+        params: {
+          id: 1
+    }
+  })
+  this.$router.push({
+    name: '/qdatda/qdatas',
+    params: {
+      id: 1
+}
+}) 
+    // router.push({ path: '/cdata/cdata', query: { id: 1 }})
+
+router.push({ path: '/qdatda', query: { id: 1 }})
+
+router.push({ path: '/bdata/bdata', query: { id: 1 }})
+
+router.push({ path: '/sixdada/sixdada', query: { id: 1 }})
+
+router.push({ path: '/sdata/sdata', query: { id: 1 }})
+
     location.reload()
 }
 

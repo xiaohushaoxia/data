@@ -4,13 +4,21 @@
       <el-form ref="form" :model="queryForm" :inline="true" @submit.native.prevent>
 
         <el-form-item>
-          <el-select v-model="queryForm.type" placeholder=" ">
-            <el-option v-for="(item, index) in type" :key="index" :label="item.label" :value="item.value"></el-option>
+          <el-select v-model="queryForm.group_id" placeholder="分组名称">
+            <el-option v-for="(item, index) in grouplists" :key="index" :label="item.label" :value="item.value"></el-option>
           </el-select>
 
         </el-form-item>
 
-        <el-form-item>
+        <el-date-picker
+      v-model="timedata"
+      type="datetimerange"
+      start-placeholder="开始日期"
+      end-placeholder="结束日期"
+      value-format="yyyy-MM-dd HH:mm:ss"
+      :default-time="['00:00:00', '23:59:59']" @change='timeDate'>
+    </el-date-picker>
+        <el-form-item style="margin-left: 5px;">
           <el-button icon="el-icon-search" type="primary" native-type="submit" @click="resetForm">
             重置
           </el-button>
@@ -21,7 +29,16 @@
             查询
           </el-button>
         </el-form-item>
-   
+        <el-form-item>
+          <el-button icon="el-icon-search" type="danger" @click="downloadImpor">
+           下载
+          </el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button icon="el-icon-search" type="danger" @click="handleImport">
+           上传
+          </el-button>
+        </el-form-item>
 
       </el-form>
 
@@ -31,22 +48,27 @@
       :height="height" @selection-change="setSelectRows" @sort-change="tableSortChange" width="100%">
       <el-table-column align="left" show-overflow-tooltip width="100" prop="id" label="序号"></el-table-column>
       
-      <el-table-column align="left" show-overflow-tooltip prop="field" label="邮箱" />
+      <el-table-column align="left" show-overflow-tooltip prop="updated_at" label="上传时间" />
    
 
-      <el-table-column align="left" show-overflow-tooltip prop="desc" label="密码" />
+      <el-table-column align="left" show-overflow-tooltip prop="group_name" label="分组名称" />
+      <el-table-column align="left" show-overflow-tooltip prop="target_domain" label="目标域名" />
+      <el-table-column align="left" show-overflow-tooltip prop="brand_domain" label="主域名" />
+      <el-table-column align="left" show-overflow-tooltip prop="brand_name" label="品牌名称" />
+      <el-table-column align="left" show-overflow-tooltip prop="domain" label="结果域名" />
+      <el-table-column align="left" show-overflow-tooltip prop="download_count" label="下载次数" />
 
-     <el-table-column align="left" show-overflow-tooltip prop="status" label="状态">
+     <!-- <el-table-column align="left" show-overflow-tooltip prop="status" label="状态">
         <template slot-scope="scope">
           <el-tag v-if="scope.row.group_status == 1" type="success">正常</el-tag>
           <el-tag v-if="scope.row.group_status == 2" type="error">异常</el-tag>
 
         </template>
 
-      </el-table-column>
-  
+      </el-table-column> -->
+<!--   
       <el-table-column align="left" show-overflow-tooltip prop="created_at" label="创建时间" />
-      <el-table-column align="left" show-overflow-tooltip prop="updated_at" label="更新时间" />
+      <el-table-column align="left" show-overflow-tooltip prop="updated_at" label="更新时间" /> -->
 
       <el-table-column show-overflow-tooltip label="操作">
         <template #default="{ row }">
@@ -65,8 +87,8 @@
 
 <script>
 // import {Delete, List} from '@/api/group'
-import { Delete, List } from '@/api/config'
-
+import { Delete, List,Download } from '@/api/data'
+import { List as groupId } from '@/api/group'
 // import edit.vue
 import Edit from './components/edit.vue'
 import SessionUpload from './components/import.vue'
@@ -93,30 +115,23 @@ export default {
       task_run_time: '',
       imgShow: true,
       list: [],
-      imageList: [],
+      grouplists: [],
       listLoading: false,
       layout: 'total, sizes, prev, pager, next, jumper',
       total: 0,
       background: true,
       selectRows: '',
       elementLoadingText: '正在加载...',
+      timedata:'',
+      start_time:'',
+      end_time:'',
       queryForm: {
         pageNo: 1,
         pageSize: 10,
-        query: '',
-        session_phone: '',
-        status: '',
-        group_name: '',
-        group_status: [
-          // { label: '全部', value: -1 },
-          { label: 'IG发送策略', value: 1 },
-          { label: 'IG拉群策略', value: 2 },
-          // { label: '消息分组', value: 3 },
-          // { label: '定时发群组', value: 3 },
-        ],
-
-        create_time: '',
-        last_run_time: '',
+        group_id  : '',
+        timedata: '',
+        start_time:'',
+        end_time:'',
       },
 
     }
@@ -127,7 +142,10 @@ export default {
     },
   },
   created() {
-
+    console.log(this.$route.query.id)
+    console.log(this.$route.query)
+    console.log(12312312312)
+    this.GroupList()
   },
   beforeDestroy() {
   },
@@ -135,6 +153,71 @@ export default {
     this.fetchData()
   },
   methods: {
+    timeDate(){
+         this.queryForm.start_time=this.timedata[0],
+         this.queryForm.end_time=this.timedata[1] 
+    },
+    //Download
+    downloadImpor(){
+      // if(this.queryForm.group_id==''){
+      //     this.$message({
+      //       message: '请选择分组',
+      //       type: 'warning'
+      //     })
+      //     return false
+      //   }
+        // //获取当前时间并设置格式  
+        if(this.timedata.length==0 && this.queryForm.group_id==''){
+          this.$message({
+            message: '请选择时间或者分组',
+            type: 'warning'
+          })
+          return false
+        }
+       
+      //把group_id start_time  end_time处理为json格式
+        console.log(this.queryForm)
+        delete this.queryForm.pageNo
+        delete this.queryForm.pageSize
+        delete this.queryForm.type
+          //申明一个json对象
+        let json = {}
+        //遍历this.queryForm
+        for (let key in this.queryForm) {
+          //判断key是否有值
+          if (this.queryForm[key]) {
+            //把key和value添加到json对象中
+            json[key] = this.queryForm[key]
+          }
+        }
+
+        Download( json).then(res => {
+          //打开下载链接
+          window.open(process.env.VUE_APP_STATIC_URL + res.data)
+
+
+          console.log(res)
+        })
+        },
+   
+
+
+    //获取分组
+      GroupList(){
+        groupId({
+          from: "select",
+          group_type: 2,//    { label: '目标域名', value: 1 }, { label: 'q数据', value: 2 },
+        }).then(res => {
+          //遍历res.data
+          res.data.forEach(item => {
+            this.grouplists.push({
+              label: item.group_name,
+              value: item.id
+            })
+          })
+        })
+      
+      },
     parseRow(row) {
       console.log(row.field)
     },
@@ -142,7 +225,10 @@ export default {
       this.queryForm = {
         pageNo: 1,
         pageSize: 15,
+        type: 1,//数据q 默认type=1
+      
       }
+      this.timedata= '',
       this.fetchData()
     },
     getImgUrl(imageFileId) {
@@ -159,7 +245,7 @@ export default {
     },
     handleEdit(row) {
       console.log(row)
-      this.$refs['edit'].showEdit(row)
+      this.$refs['edit'].showEdit(row,this.grouplists)
     },
     handleDelete(row) {
       this.$baseConfirm('你确定要删除当前项吗', null, async () => {
@@ -168,18 +254,10 @@ export default {
         await this.fetchData()
       })
     },
-    handleCheckOne(row) {
-      this.$baseConfirm('你确定要检测当' + row.phone + '吗', null, async () => {
-        this.$baseNotify('开始执行检测任务,请勿重复执行', row.phone + '：任务执行中')
-      })
-    },
-    handleCheckAll() {
-      this.$baseConfirm('手动批量检测开始,请勿重复执行', null, async () => {
-        this.$baseNotify('开始执行检测任务,请勿重复执行', '任务执行中',)
-      })
-    },
+   
     handleSizeChange(val) {
       this.queryForm.pageSize = val
+  
       this.fetchData()
     },
     handleCurrentChange(val) {
@@ -188,38 +266,22 @@ export default {
     },
     handleQuery() {
       this.queryForm.pageNo = 1
-      // console.log(this.queryForm.query)
+      // console.log(this.timedata)
+      // console.log(13213213123)
+      // console.log(this.queryForm)
       this.fetchData()
     },
     async fetchData() {
       this.listLoading = true
-      const { data, count } = await List(this.queryForm)
-      this.total = count
+      this.queryForm.type =1
+      const { data, total } = await List(this.queryForm)
+      this.total = total
 
       this.list = data
-      // for (let i = 0; i < this.list.length; i++) {
-      //     if( this.list[i].type==1 && this.list[i].type==2){
-      //       this.list[i].value = JSON.parse(this.list[i].value)
-      //     //组装数据
-      //     this.list[i].add_members_every_time = this.list[i].value.add_members_every_time       //每次拉多少人
-      //     this.list[i].add_members_sleep = this.list[i].value.add_members_sleep       //每次拉人的间隔
-      //     this.list[i].create_members_total = this.list[i].value.create_members_total       //群总人数
-      //     this.list[i].one_account_create_total = this.list[i].value.one_account_create_total       //一个协议号建群数
-      //     this.list[i].create_group_sleep = this.list[i].value.create_group_sleep     //拉群间隔
-      //     if(  this.list[i].one_account_create_total===99999999){
-      //       this.list[i].sele=1
-      //     }else{
-      //       this.list[i].sele=2
-      //     }
-      //     this.list[i].error_sleep = this.list[i].value.error_sleep  //异常休眠间隔
-      //     this.list[i].send_sleep = this.list[i].value.send_sleep     //每次发送的间隔
-      //     this.list[i].one_account_send_total = this.list[i].value.one_account_send_total   //一个协议号发几个
-      //     }
-      //   }
-        // console.log(this.list.value)
+
       setTimeout(() => {
         this.listLoading = false
-      }, 500)
+      }, 6000)
     },
     handleImport() {
       this.$refs['sessionUpload'].showUpload()

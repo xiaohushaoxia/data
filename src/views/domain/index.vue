@@ -115,6 +115,7 @@ export default {
       task_run_time: '',
       imgShow: true,
       list: [],
+      type: '',
       grouplists: [],
       listLoading: false,
       layout: 'total, sizes, prev, pager, next, jumper',
@@ -142,6 +143,26 @@ export default {
     },
   },
   created() {
+    let href = window.location.href; 
+    let path = href.split('//')[1].split('#')[1]  
+    console.log(path)   //wayne.com 
+    if(path=="/qdata/qdata/domain"){
+      this.type=6
+    }
+    if(path=="/bdata/bdata/domain"){
+      this.type=6
+    }
+    if(path=="/sdata/sdata/domain"){
+      this.type=6
+    }
+    if(path=="/sixdata/bdata/domain"){
+      this.type=6
+    }
+    if(path=="/cdata/bdata/domain"){
+      this.type=6
+    }
+  console.log( this.type)
+
     this.GroupList()
   },
   beforeDestroy() {

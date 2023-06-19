@@ -139,7 +139,7 @@ export default {
         create_time: '',
         last_run_time: '',
       },
-
+      type:'',
     }
   },
   computed: {
@@ -148,6 +148,25 @@ export default {
     },
   },
   created() {
+    let href = window.location.href; 
+    let path = href.split('//')[1].split('#')[1]  
+    console.log(path)   //wayne.com 
+    if(path=="/qdata/qdata/group"){
+      this.type=6
+    }
+    if(path=="/bdata/bdata/group"){
+      this.type=6
+    }
+    if(path=="/sdata/sdata/group"){
+      this.type=6
+    }
+    if(path=="/sixdata/bdata/group"){
+      this.type=6
+    }
+    if(path=="/cdata/bdata/group"){
+      this.type=6
+    }
+  console.log( this.type)
 
   },
   beforeDestroy() {

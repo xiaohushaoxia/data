@@ -142,6 +142,9 @@ export default {
     },
   },
   created() {
+    console.log(this.$route.query.id)
+    console.log(this.$route.query)
+    console.log(12312312312)
     this.GroupList()
   },
   beforeDestroy() {
