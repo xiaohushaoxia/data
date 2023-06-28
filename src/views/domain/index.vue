@@ -147,21 +147,22 @@ export default {
     let path = href.split('//')[1].split('#')[1]  
     console.log(path)   //wayne.com 
     if(path=="/index"){
-      this.type=q
+      this.type='q'
     }
     if(path=="/bdata/bdata/domain"){
-      this.type=b
+      this.type='b'
     }
     if(path=="/sdata/sdata/domain"){
-      this.type=s
+      this.type='s'
     }
     if(path=="/sixdata/bdata/domain"){
       this.type=6
     }
     if(path=="/cdata/bdata/domain"){
-      this.type=c
+      this.type='c'
     }
-  console.log( this.type)
+    this.queryForm.type=this.type
+  console.log( this.queryForm.type)
 
     this.GroupList()
   },

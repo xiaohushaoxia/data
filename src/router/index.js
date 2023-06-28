@@ -150,8 +150,8 @@ export const asyncRoutes = [
         meta: { title: 'B数据', permissions: ['1','2'] },
         children: [
            {
-                path: 'bdata/group',
-                name: 'bdata/group',
+                path: 'bdata/domain',
+                name: 'bdata/domain',
                 component: () => import('@/views/domain/index.vue'),
                 meta: {
                     title: '目标域名',
@@ -162,8 +162,8 @@ export const asyncRoutes = [
                 
             }, 
             {
-                path: 'bdata/domain',
-                name: 'bdata/domain',
+                path: 'bdata/group',
+                name: 'bdata/group',
                 component: () => import('@/views/group/index.vue'),
                 meta: {
                     title: '分组',
@@ -254,8 +254,8 @@ export const asyncRoutes = [
             
         }, 
         {
-            path: 'bdata/group',
-            name: 'bdata/group',
+            path: 'sixdata/group',
+            name: 'sixdata/group',
             component: () => import('@/views/group/index.vue'),
             meta: {
                 title: '分组',

@@ -151,22 +151,23 @@ export default {
     let href = window.location.href; 
     let path = href.split('//')[1].split('#')[1]  
     console.log(path)   //wayne.com 
-    if(path=="/index"){
-      this.type=q
+    if(path=="/qdata/group"){
+      this.type='q'
     }
     if(path=="/bdata/bdata/group"){
-      this.type=b
+      this.type='b'
     }
     if(path=="/sdata/sdata/group"){
-      this.type=s
+      this.type='s'
     }
     if(path=="/sixdata/bdata/group"){
       this.type=6
     }
     if(path=="/cdata/bdata/group"){
-      this.type=c
+      this.type='c'
     }
-  console.log( this.type)
+    this.queryForm.type=this.type
+  console.log(this.type)
 
   },
   beforeDestroy() {
