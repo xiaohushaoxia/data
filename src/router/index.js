@@ -94,15 +94,16 @@ export const asyncRoutes = [
     //     ],
     // },
     //Q
+   
     {
-        path: '/qdata',
+        path: '/',
         component: Layout,
-        redirect: '/qdata',
+        redirect: '/index',
         meta: { title: 'Q数据', permissions: ['1','2'] },
         children: [
            {
-                path: 'qdata/domain',
-                name: 'qdata/domain',
+                path: 'index',
+                name: 'index',
                 component: () => import('@/views/domain/index.vue'),
                 meta: {
                     title: '目标域名',
@@ -357,16 +358,7 @@ export function resetRouter() {
       id: 1
 }
 }) 
-    // router.push({ path: '/cdata/cdata', query: { id: 1 }})
-
-router.push({ path: '/qdatda', query: { id: 1 }})
-
-router.push({ path: '/bdata/bdata', query: { id: 1 }})
-
-router.push({ path: '/sixdada/sixdada', query: { id: 1 }})
-
-router.push({ path: '/sdata/sdata', query: { id: 1 }})
-
+ 
     location.reload()
 }
 

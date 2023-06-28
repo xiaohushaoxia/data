@@ -146,20 +146,20 @@ export default {
     let href = window.location.href; 
     let path = href.split('//')[1].split('#')[1]  
     console.log(path)   //wayne.com 
-    if(path=="/qdata/qdata/domain"){
-      this.type=6
+    if(path=="/index"){
+      this.type=q
     }
     if(path=="/bdata/bdata/domain"){
-      this.type=6
+      this.type=b
     }
     if(path=="/sdata/sdata/domain"){
-      this.type=6
+      this.type=s
     }
     if(path=="/sixdata/bdata/domain"){
       this.type=6
     }
     if(path=="/cdata/bdata/domain"){
-      this.type=6
+      this.type=c
     }
   console.log( this.type)
 
