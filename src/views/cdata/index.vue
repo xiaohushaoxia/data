@@ -225,7 +225,7 @@ export default {
       this.queryForm = {
         pageNo: 1,
         pageSize: 15,
-        type: 1,//数据q 默认type=1
+        type: 'c',//数据q 默认type=1
       
       }
       this.timedata= '',
@@ -273,7 +273,7 @@ export default {
     },
     async fetchData() {
       this.listLoading = true
-      this.queryForm.type =1
+      this.queryForm.type ='c'
       const { data, total } = await List(this.queryForm)
       this.total = total
 

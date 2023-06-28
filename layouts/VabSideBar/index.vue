@@ -77,7 +77,7 @@
     bottom: 0;
     left: 0;
     z-index: $base-z-index;
-    width: $base-left-menu-width;
+    // width: $base-left-menu-width;
     height: 100vh;
     overflow: hidden;
     background: $base-menu-background;
