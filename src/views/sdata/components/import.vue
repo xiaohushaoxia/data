@@ -74,6 +74,9 @@ export default {
     }
   },
   created() {
+    this.form.group_type=2,//数据
+    //获取父组件的值
+    this.form.type='s'
     // this.form.group_name='',
     //     this.form.file=''
   },

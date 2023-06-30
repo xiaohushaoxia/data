@@ -155,10 +155,10 @@ export default {
     if(path=="/sdata/sdata/domain"){
       this.type='s'
     }
-    if(path=="/sixdata/bdata/domain"){
+    if(path=="/sixdata/sixdata/group"){
       this.type=6
     }
-    if(path=="/cdata/bdata/domain"){
+    if(path=="/cdata/sdata/domain"){
       this.type='c'
     }
     this.queryForm.type=this.type
@@ -206,8 +206,6 @@ export default {
         Download( json).then(res => {
           //打开下载链接
           window.open(process.env.VUE_APP_STATIC_URL + res.data)
-
-
           console.log(res)
         })
         },
@@ -218,15 +216,17 @@ export default {
       GroupList(){
         groupId({
           from: "select",
-        group_type:1,//
+        type:1,//
         }).then(res => {
           //遍历res.data
+         if(res.data!=''){
           res.data.forEach(item => {
             this.grouplists.push({
               label: item.group_name,
               value: item.id
             })
           })
+         }
         })
       
       },
@@ -237,7 +237,8 @@ export default {
       this.queryForm = {
         pageNo: 1,
         pageSize: 15,
-        // type: 1,//数据q 默认type=1   { label: '目标域名', value: 1 }, { label: 'q数据', value: 2 },
+        type: this.type,
+        //数据q 默认type=1   { label: '目标域名', value: 1 }, { label: 'q数据', value: 2 },
       }
       this.timedata= '',
       this.fetchData()
@@ -291,7 +292,7 @@ export default {
 
       setTimeout(() => {
         this.listLoading = false
-      }, 6000)
+      }, 1200)
     },
     handleImport() {
       this.$refs['sessionUpload'].showUpload()

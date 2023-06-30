@@ -160,7 +160,7 @@ export default {
     if(path=="/sdata/sdata/group"){
       this.type='s'
     }
-    if(path=="/sixdata/bdata/group"){
+    if(path=="/sixdata/sixdata/group"){
       this.type=6
     }
     if(path=="/cdata/bdata/group"){
@@ -183,6 +183,7 @@ export default {
       this.queryForm = {
         pageNo: 1,
         pageSize: 15,
+        type:this.type
       }
       this.fetchData()
     },

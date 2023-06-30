@@ -75,7 +75,11 @@ export default {
   },
   created() {
     this.form.group_name='',
-        this.form.file=''
+    this.form.file='',
+    this.form.group_type=1,//目标
+    //获取父组件的值
+    this.form.type=this.$parent.type
+    // this.form.type=1
   },
   methods: {
     async showUpload() {
