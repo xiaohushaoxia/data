@@ -207,6 +207,7 @@ export default {
         groupId({
           from: "select",
           group_type: 2,//    { label: '目标域名', value: 1 }, { label: 'q数据', value: 2 },
+          type: 'q',//数据q 默认type=1
         }).then(res => {
           //遍历res.data
           res.data.forEach(item => {

@@ -216,7 +216,9 @@ export default {
       GroupList(){
         groupId({
           from: "select",
-        type:1,//
+        // type:1,//
+        group_type:1,
+        type:this.type
         }).then(res => {
           //遍历res.data
          if(res.data!=''){
