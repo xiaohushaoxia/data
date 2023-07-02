@@ -282,7 +282,7 @@ export default {
 
       setTimeout(() => {
         this.listLoading = false
-      }, 6000)
+      }, 500)
     },
     handleImport() {
       this.$refs['sessionUpload'].showUpload()

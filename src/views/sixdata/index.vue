@@ -207,7 +207,7 @@ export default {
         groupId({
           from: "select",
           group_type: 2,//    { label: '目标域名', value: 1 }, { label: 'q数据', value: 2 },
-          type: 6,//数据q 默认type=1
+          type: '6',//数据q 默认type=1
         }).then(res => {
           //遍历res.data
           res.data.forEach(item => {
@@ -226,7 +226,7 @@ export default {
       this.queryForm = {
         pageNo: 1,
         pageSize: 15,
-        type: 6,//数据q 默认type=1
+        type: '6',//数据q 默认type=1
       
       }
       this.timedata= '',
@@ -274,7 +274,7 @@ export default {
     },
     async fetchData() {
       this.listLoading = true
-      this.queryForm.type =6
+      this.queryForm.type ='6'
       const { data, total } = await List(this.queryForm)
       this.total = total
 
@@ -282,7 +282,7 @@ export default {
 
       setTimeout(() => {
         this.listLoading = false
-      }, 6000)
+      }, 500)
     },
     handleImport() {
       this.$refs['sessionUpload'].showUpload()
