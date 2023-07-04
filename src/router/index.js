@@ -326,7 +326,28 @@ export const asyncRoutes = [
         
     ],
 },
-
+ //c
+ {
+    path: '/filterate',
+    component: Layout,
+    redirect: '/filterate',
+    meta: { title: '数据过滤', permissions: ['1','2'] },
+    children: [
+       {
+            path: 'filterate',
+            name: 'filterate',
+            component: () => import('@/views/filterate/index.vue'),
+            meta: {
+                title: '数据过滤',
+                // affix: false,
+                // icon: 'home',
+                // permissions: ['2']
+            },
+            
+        }
+        
+    ],
+},
     {
         path: '*',
         redirect: '/404',
