@@ -95,8 +95,35 @@ export default {
         this.form.group_name='',
         this.form.file='',
         this.fileList=[],
+        this.$msgbox({
+            title: '消息',
+            message:  h('p', null, [
+                      h('span', null, '本次上传共 '),
+                      h('i', { style: 'color: teal' }, res.data.upload_total),
+                      h('br', null, ),
+                      h('span', null, '有效数据 '),
+                      h('i', { style: 'color: teal' }, res.data.valid_total),
+                      h('br', null, ),
+                      h('span', null, '重复数据 '),
+                      h('i', { style: 'color: teal' }, res.data.repeat_total),
+                      h('br', null, ),
+            ]),
+            showCancelButton: false,
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            beforeClose: (action, instance, done) => {
+              if (action === 'confirm') {
+                instance.confirmButtonLoading = false;
+                instance.confirmButtonText = '';
+                this.$parent.fetchData()
            this.dialogFormVisible = false
-           this.$parent.fetchData()
+                done();
+              } else {
+                done();
+              }
+            }
+          }).then(action => {
+          });
       }).catch(err => {
         this.progressFlag = false
         // this.$message.error('上传失败')

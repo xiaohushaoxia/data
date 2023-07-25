@@ -9,7 +9,10 @@
           </el-select>
 
         </el-form-item>
-
+     
+        <el-form-item>
+        <el-input v-model="queryForm.domain" placeholder="目标域名"></el-input>
+      </el-form-item>
         <el-date-picker
       v-model="timedata"
       type="datetimerange"
@@ -129,6 +132,7 @@ export default {
         pageNo: 1,
         pageSize: 10,
         group_id  : '',
+        domain: '',
         timedata: '',
         start_time:'',
         end_time:'',
@@ -167,9 +171,9 @@ export default {
       //     return false
       //   }
         // //获取当前时间并设置格式  
-        if(this.timedata.length==0 && this.queryForm.group_id==''){
+        if(this.timedata.length==0 && this.queryForm.group_id==''  && this.queryForm.domain==''){
           this.$message({
-            message: '请选择时间或者分组',
+            message: '请选择时间,分组或者域名',
             type: 'warning'
           })
           return false

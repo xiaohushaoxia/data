@@ -4,7 +4,7 @@
       <el-form ref="form" :model="queryForm" :inline="true" @submit.native.prevent>
 
 
-        <!-- <el-form-item>
+        <el-form-item>
           <el-input v-model="queryForm.group_name" placeholder="分组名称"></el-input>
         </el-form-item>
         <el-form-item>
@@ -23,12 +23,12 @@
           <el-button icon="el-icon-search" type="primary" native-type="submit" @click="handleQuery">
             查询
           </el-button>
-        </el-form-item> -->
+        </el-form-item> 
         <!-- <el-form-item>
           <el-button icon="el-icon-add" type="success" native-type="submit" @click="handleAdd">
             创建分组
           </el-button>
-        </el-form-item> -->
+        </el-form-item>-->
 
       </el-form>
 
@@ -64,6 +64,7 @@
 
       <el-table-column show-overflow-tooltip label="操作" >
         <template #default="{ row }" >
+          <el-button type="gray" size="mini" @click="handleImport(row)">上传</el-button>
           <el-button type="danger" size="mini" @click="handleDelete(row)">删除</el-button>
           <el-button type="primary" size="mini" @click="handleEdit(row)">编辑</el-button>
         </template>
@@ -73,6 +74,7 @@
       :page-size="queryForm.pageSize" :total="total" @current-change="handleCurrentChange"
       @size-change="handleSizeChange"></el-pagination>
     <Edit ref="edit" />
+    <SessionUpload ref="sessionUpload" />
   </div>
 </template>
 
@@ -121,7 +123,7 @@ export default {
       ],
       group_type: [
         { label: '目标域名', value: 1 },
-        { label: 'q数据', value: 2 },
+        { label: '数据', value: 2 },
       ],
       queryForm: {
         pageNo: 1,
@@ -245,8 +247,8 @@ export default {
 
 
     },
-    handleImport() {
-      this.$refs['sessionUpload'].showUpload()
+    handleImport(row) {
+      this.$refs['sessionUpload'].showUpload(row)
     },
 
 
