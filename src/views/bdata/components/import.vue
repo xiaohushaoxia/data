@@ -29,13 +29,15 @@
 
    <el-form-item label="文件" prop="file">
      <el-upload
-       class="upload"
-       name="file"
+       class="upload-demo"
        action="#"
+       name="file"
+       :auto-upload="false"
        :limit="3"
-       :http-request="Upload"
+       :on-change="uploadFile"
        :multiple="true"
        :file-list="fileList"
+       :on-remove="handleRemove"
      >
        <el-button type="text" size="small" icon="el-icon-upload">点击上传</el-button>
        <div class="el-upload__tip" slot="tip">请上传scv格式文件</div>
@@ -81,6 +83,10 @@ export default {
     //     this.form.file=''
   },
   methods: {
+    handleRemove(e){
+      console.log(456545645)
+      console.log(e)
+    },
     async showUpload() {
       this.dialogFormVisible = true
     },
@@ -89,8 +95,7 @@ export default {
     },
     async save() {
       const h = this.$createElement;
-      console.log(this.form)
-      Import(this.form).then(res => {
+      Import({...this.form}).then(res => {
         // this.$message.success('导入成功')
         // console.log(res)
      
@@ -134,20 +139,19 @@ export default {
       this.$baseNotify('数据上传中', '任务执行中',)
    
     },
-    Upload(fileObj) {
-      console.log(fileObj)
+    uploadFile(file, fileList) {
+      console.log('1111111',file)
       // console.log(23213213)
-      this.form.file=fileObj.file
-      let f = new FormData()
-      f.append("file", fileObj.file)
+      
+      
+      this.form.file=file.raw
       // Import(f).then(res => {
       //   // this.$message.success('导入成功')
       //   // console.log(res)
       // }).catch(err => {
-      //   this.progressFlag = false
+      //   // this.progressFlag = false
       //   // this.$message.error('上传失败')
       // })
-      return true
     },
 
   },
