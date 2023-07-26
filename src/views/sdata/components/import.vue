@@ -88,15 +88,14 @@ export default {
       this.dialogFormVisible = false
     },
     async save() {
+      const h = this.$createElement;
       console.log(this.form)
       Import(this.form).then(res => {
-        this.$message.success('导入成功')
+        // this.$message.success('导入成功')
         // console.log(res)
-        this.form.group_name='',
-        this.form.file='',
-        this.fileList=[],
+   
         this.$msgbox({
-            title: '消息',
+            title: '上传结果',
             message:  h('p', null, [
                       h('span', null, '本次上传共 '),
                       h('i', { style: 'color: teal' }, res.data.upload_total),
@@ -124,6 +123,9 @@ export default {
             }
           }).then(action => {
           });
+          this.form.group_name='',
+        this.form.file='',
+        this.fileList=[]
       }).catch(err => {
         this.progressFlag = false
         // this.$message.error('上传失败')

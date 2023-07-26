@@ -111,7 +111,7 @@ export default {
        
           // this.$message.success('导入成功')
           this.$msgbox({
-            title: '消息',
+            title: '上传结果',
             message:  h('p', null, [
                       h('span', null, '本次上传共 '),
                       h('i', { style: 'color: teal' }, res.data.upload_total),
@@ -148,7 +148,7 @@ export default {
         Import(this.form).then(res => {
           // this.$message.success('导入成功')
             this.$msgbox({
-            title: '消息',
+            title: '上传结果',
             message:  h('p', null, [
                       h('span', null, '本次上传共 '),
                       h('i', { style: 'color: teal' }, res.data.upload_total),
