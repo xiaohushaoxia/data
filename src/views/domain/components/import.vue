@@ -82,6 +82,9 @@ export default {
     //获取父组件的值
     this.form.type=this.$parent.type
     // this.form.type=1
+    this.form.group_name='',
+        this.form.file='',
+        this.fileList=[]
   },
   methods: {
     async showUpload() {
@@ -117,6 +120,9 @@ export default {
              instance.confirmButtonLoading = false;
              instance.confirmButtonText = '';
              this.$parent.fetchData()
+             this.form.group_name='',
+        this.form.file='',
+        this.fileList=[]
         this.dialogFormVisible = false
              done();
            } else {
@@ -125,7 +131,7 @@ export default {
          }
        }).then(action => {
        });
-   
+       
       }).catch(err => {
         this.progressFlag = false
         // this.$message.error('上传失败')

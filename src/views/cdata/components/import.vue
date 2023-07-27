@@ -81,6 +81,9 @@ export default {
     this.form.type='c'
     // this.form.group_name='',
     //     this.form.file=''
+    this.form.group_name='',
+        this.form.file='',
+        this.fileList=[]
   },
   methods: {
     async showUpload() {
@@ -116,6 +119,9 @@ export default {
               if (action === 'confirm') {
                 instance.confirmButtonLoading = false;
                 instance.confirmButtonText = '';
+                this.form.group_name='',
+        this.form.file='',
+        this.fileList=[]
                 this.dialogFormVisible = false
                 this.$parent.fetchData()
                 done();

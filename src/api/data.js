@@ -46,7 +46,7 @@ export async function Delete(data) {
         data,
     })
 }
-// 导入
+// 导入  设置超时时间
 export async function Import(data) {
     return request({
         url: '/business_domain/upload',
@@ -54,6 +54,7 @@ export async function Import(data) {
         headers: {
             'Content-Type': 'multipart/form-data;charset=UTF-8',
         },
+        timeout:30000,
         data,
     })
 }

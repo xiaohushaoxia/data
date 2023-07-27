@@ -37,6 +37,12 @@
     <el-table ref="tableSort" v-loading="listLoading" :data="list" :element-loading-text="elementLoadingText"
       :height="height" @selection-change="setSelectRows" @sort-change="tableSortChange" width="100%">
       <el-table-column align="left" show-overflow-tooltip prop="id" label="序号" ></el-table-column>
+        <el-table-column align="left" show-overflow-tooltip prop="session_phone" label="业务类型">
+        <template slot-scope="scope">
+          <el-tag v-if="scope.row.group_type == 1">域名</el-tag>
+          <el-tag v-if="scope.row.group_type == 2">数据</el-tag>
+        </template>
+      </el-table-column>
 
       <!-- <el-table-column align="left" show-overflow-tooltip prop="session_phone" label="分组类型">
         <template slot-scope="scope">

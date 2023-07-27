@@ -42,6 +42,7 @@ export async function Import(data) {
         headers: {
             'Content-Type': 'multipart/form-data;charset=UTF-8',
         },
+        timeout:30000,
         data,
     })
 }

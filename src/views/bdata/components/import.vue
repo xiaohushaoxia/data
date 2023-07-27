@@ -79,6 +79,9 @@ export default {
     this.form.group_type=2,//数据
     //获取父组件的值
     this.form.type='b'
+    this.form.group_name='',
+    this.form.file='',
+    this.fileList=[]
     // this.form.group_name='',
     //     this.form.file=''
   },
@@ -120,6 +123,9 @@ export default {
                 instance.confirmButtonLoading = false;
                 instance.confirmButtonText = '';
                 this.$parent.fetchData()
+                this.form.group_name='',
+        this.form.file='',
+        this.fileList=[]
                 this.dialogFormVisible = false
                 done();
               } else {

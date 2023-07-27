@@ -91,6 +91,7 @@ export default {
     // this.form.type='c'
     // // this.form.group_name='',
     // //     this.form.file=''
+    
   },
   methods: {
     async showUpload(row) {
