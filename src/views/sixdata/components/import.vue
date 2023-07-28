@@ -96,40 +96,40 @@ export default {
       const h = this.$createElement;
       console.log(this.form)
       Import(this.form).then(res => {
-        this.$msgbox({
-            title: '上传结果',
-            message:  h('p', null, [
-                      h('span', null, '本次上传共 '),
-                      h('i', { style: 'color: teal' }, res.data.upload_total),
-                      h('br', null, ),
-                      h('span', null, '有效数据 '),
-                      h('i', { style: 'color: teal' }, res.data.valid_total),
-                      h('br', null, ),
-                      h('span', null, '重复数据 '),
-                      h('i', { style: 'color: teal' }, res.data.repeat_total),
-                      h('br', null, ),
-            ]),
-            showCancelButton: false,
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            beforeClose: (action, instance, done) => {
-              if (action === 'confirm') {
-                instance.confirmButtonLoading = false;
-                instance.confirmButtonText = '';
-                this.$parent.fetchData()
-                this.form.group_name='',
-        this.form.file='',
-        this.fileList=[]
-           this.dialogFormVisible = false
-                done();
-              } else {
-                done();
-              }
-            }
-          }).then(action => {
-          });
-        // this.$message.success('导入成功')
-        // console.log(res)
+        // this.$msgbox({
+        //     title: '上传结果',
+        //     message:  h('p', null, [
+        //               h('span', null, '本次上传共 '),
+        //               h('i', { style: 'color: teal' }, res.data.upload_total),
+        //               h('br', null, ),
+        //               h('span', null, '有效数据 '),
+        //               h('i', { style: 'color: teal' }, res.data.valid_total),
+        //               h('br', null, ),
+        //               h('span', null, '重复数据 '),
+        //               h('i', { style: 'color: teal' }, res.data.repeat_total),
+        //               h('br', null, ),
+        //     ]),
+        //     showCancelButton: false,
+        //     confirmButtonText: '确定',
+        //     cancelButtonText: '取消',
+        //     beforeClose: (action, instance, done) => {
+        //       if (action === 'confirm') {
+        //         instance.confirmButtonLoading = false;
+        //         instance.confirmButtonText = '';
+        //         this.$parent.fetchData()
+        //         this.form.group_name='',
+        // this.form.file='',
+        // this.fileList=[]
+        //    this.dialogFormVisible = false
+        //         done();
+        //       } else {
+        //         done();
+        //       }
+        //     }
+        //   }).then(action => {
+        //   });
+        this.$message.success('导入成功')
+        console.log(res)
         this.form.group_name='',
         this.form.file='',
         this.fileList=[]
